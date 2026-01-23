@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Word Counter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="drop-zone">
+            <div id="drop-zone-text">
+                <p>Arrastra y suelta un archivo PDF aquí</p>
+                <span>o</span>
+                <button id="browse-btn">Selecciona un archivo</button>
+                <input type="file" id="file-input" accept=".pdf" hidden>
+            </div>
+        </div>
+
+        <div id="result-view" class="hidden">
+            <div id="pdf-info">
+                <h2 id="file-name"></h2>
+                <div class="stats">
+                    <div class="stat">
+                        <h3>Páginas</h3>
+                        <p id="page-count">-</p>
+                    </div>
+                    <div class="stat">
+                        <h3>Palabras</h3>
+                        <p id="word-count">-</p>
+                    </div>
+                    <div class="stat">
+                        <h3>Caracteres</h3>
+                        <p id="char-count">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reading-time-calculator">
+                <h3>Calculadora de tiempo de lectura</h3>
+                <div class="wpm-input">
+                    <label for="wpm">Palabras por minuto:</label>
+                    <input type="number" id="wpm" value="200" min="1">
+                </div>
+                <div id="reading-time-result">
+                    <h4>Tiempo estimado de lectura:</h4>
+                    <p id="reading-time">-</p>
+                </div>
+            </div>
+            
+            <button id="reset-btn">Analizar otro PDF</button>
+        </div>
+
+        <div id="error-message" class="hidden">
+            <p>Por favor, suelta un archivo PDF válido.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>
+        // Required by pdf.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js`;
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
