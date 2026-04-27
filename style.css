@@ -69,6 +69,14 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     animation: fadeIn 0.5s ease-in-out;
+    transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+    border: 2px solid transparent;
+}
+
+#result-view.dragover-page {
+    border-color: #4dabf7;
+    background-color: #f0f9ff;
+    box-shadow: 0 8px 30px rgba(77, 171, 247, 0.2);
 }
 
 @keyframes resetting {

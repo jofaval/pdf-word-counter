@@ -55,9 +55,26 @@ function preventDefaults(e) {
     dropZone.addEventListener(eventName, () => dropZone.classList.remove('dragover'), false);
 });
 
-// Handle dropped files
+// Highlight body/page when dragging over entire page (for result view feedback)
+['dragenter', 'dragover'].forEach(eventName => {
+    document.body.addEventListener(eventName, (e) => {
+        // Only add visual feedback if not already over dropZone
+        if (!dropZone.contains(e.target) && !dropZone.classList.contains('dragover')) {
+            resultView.classList.add('dragover-page');
+        }
+    }, false);
+});
+
+['dragleave', 'drop'].forEach(eventName => {
+    document.body.addEventListener(eventName, () => {
+        resultView.classList.remove('dragover-page');
+    }, false);
+});
+
+// Handle dropped files on entire page (including result view)
 dropZone.addEventListener('drop', handleDrop, false);
 resultView.addEventListener('drop', handleDrop, false);
+document.body.addEventListener('drop', handleDrop, false);
 
 
 // Handle file selection via button
