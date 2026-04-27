@@ -66,6 +66,25 @@
                         <input type="number" id="wpm" value="200" min="1" aria-describedby="wpm-help">
                         <small id="wpm-help">Velocidad promedio de lectura</small>
                     </div>
+                    
+                    <div class="cognitive-input">
+                        <label for="cognitive-load">Carga cognitiva:</label>
+                        <div class="input-with-value">
+                            <input type="range" id="cognitive-load" min="0" max="100" value="0" aria-describedby="cognitive-help">
+                            <span id="cognitive-value">0%</span>
+                        </div>
+                        <small id="cognitive-help">Complejidad y densidad del contenido (0-100%)</small>
+                    </div>
+                    
+                    <div class="entropy-input">
+                        <label for="entropy">Entropía básica:</label>
+                        <div class="input-with-value">
+                            <input type="range" id="entropy" min="0" max="100" value="0" aria-describedby="entropy-help">
+                            <span id="entropy-value">0%</span>
+                        </div>
+                        <small id="entropy-help">Desorden e imprevisibilidad del texto (0-100%)</small>
+                    </div>
+                    
                     <div id="reading-time-result">
                         <h4>Tiempo estimado de lectura:</h4>
                         <p id="reading-time">-</p>
