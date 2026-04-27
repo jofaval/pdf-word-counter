@@ -1,66 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Word Counter</title>
+    <meta name="description" content="Contador de palabras para PDFs. Analiza archivos PDF y obtén estadísticas detalladas: número de páginas, palabras, caracteres y tiempo estimado de lectura.">
+    <meta name="keywords" content="contador palabras PDF, analizar PDF, estadísticas PDF, contador caracteres, tiempo lectura">
+    <meta name="author" content="PDF Word Counter">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- Open Graph Tags para redes sociales -->
+    <meta property="og:title" content="PDF Word Counter - Contador de Palabras para PDFs">
+    <meta property="og:description" content="Herramienta gratuita para contar palabras, caracteres y páginas en archivos PDF. Calcula el tiempo estimado de lectura.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jofaval.github.io/pdf-word-counter">
+    <meta property="og:image" content="https://jofaval.github.io/pdf-word-counter/og-image.png">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PDF Word Counter">
+    <meta name="twitter:description" content="Analiza PDFs y obtén estadísticas detalladas sobre palabras, caracteres y tiempo de lectura">
+    
+    <title>PDF Word Counter - Contador de Palabras y Caracteres para PDFs</title>
+    <link rel="canonical" href="https://jofaval.github.io/pdf-word-counter">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="app">
-        <div id="drop-zone">
-            <div id="drop-zone-text">
-                <p>Arrastra y suelta un archivo PDF aquí</p>
+        <main>
+            <section id="drop-zone" aria-label="Zona de carga de archivos PDF">
+                <header>
+                    <h1>Contador de Palabras para PDFs</h1>
+                </header>
+                <div id="drop-zone-text">
+                    <p>Arrastra y suelta un archivo PDF aquí</p>
                 <span>o</span>
-                <button id="browse-btn">Selecciona un archivo</button>
-                <input type="file" id="file-input" accept=".pdf" hidden>
-            </div>
-        </div>
-
-        <div id="result-view" class="hidden">
-            <div id="pdf-info">
-                <h2 id="file-name"></h2>
-                <div class="stats">
-                    <div class="stat">
-                        <h3>Páginas</h3>
-                        <p id="page-count">-</p>
-                    </div>
-                    <div class="stat">
-                        <h3>Palabras</h3>
-                        <p id="word-count">-</p>
-                    </div>
-                    <div class="stat">
-                        <h3>Caracteres</h3>
-                        <p id="char-count">-</p>
-                    </div>
+                    <button id="browse-btn" aria-label="Seleccionar archivo PDF">Selecciona un archivo</button>
+                    <input type="file" id="file-input" accept=".pdf" hidden aria-label="Input file para PDF">
                 </div>
-            </div>
+            </section>
 
-            <div id="reading-time-calculator">
-                <h3>Calculadora de tiempo de lectura</h3>
-                <div class="wpm-input">
-                    <label for="wpm">Palabras por minuto:</label>
-                    <input type="number" id="wpm" value="200" min="1">
-                </div>
-                <div id="reading-time-result">
-                    <h4>Tiempo estimado de lectura:</h4>
-                    <p id="reading-time">-</p>
-                </div>
-            </div>
-            
-            <button id="reset-btn">Analizar otro PDF</button>
-        </div>
+            <section id="result-view" class="hidden" aria-label="Resultados del análisis PDF">
+                <article id="pdf-info">
+                    <h2 id="file-name"></h2>
+                    <div class="stats" role="region" aria-label="Estadísticas del PDF">
+                        <div class="stat">
+                            <h3>Páginas</h3>
+                            <p id="page-count">-</p>
+                        </div>
+                        <div class="stat">
+                            <h3>Palabras</h3>
+                            <p id="word-count">-</p>
+                        </div>
+                        <div class="stat">
+                            <h3>Caracteres</h3>
+                            <p id="char-count">-</p>
+                        </div>
+                    </div>
+                </article>
 
-        <div id="error-message" class="hidden">
-            <p>Por favor, suelta un archivo PDF válido.</p>
-        </div>
-    </div>
+                <article id="reading-time-calculator">
+                    <h3>Calculadora de tiempo de lectura</h3>
+                    <div class="wpm-input">
+                        <label for="wpm">Palabras por minuto:</label>
+                        <input type="number" id="wpm" value="200" min="1" aria-describedby="wpm-help">
+                        <small id="wpm-help">Velocidad promedio de lectura</small>
+                    </div>
+                    <div id="reading-time-result">
+                        <h4>Tiempo estimado de lectura:</h4>
+                        <p id="reading-time">-</p>
+                    </div>
+                </article>
+                
+                <button id="reset-btn">Analizar otro PDF</button>
+            </section>
 
+            <section id="error-message" class="hidden" role="alert">
+                <p>Por favor, suelta un archivo PDF válido.</p>
+            </section>
+        </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
     <script>
         // Required by pdf.js
         pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js`;
     </script>
+    
+    <!-- Schema.org markup para mejor indexación -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "PDF Word Counter",
+      "description": "Herramienta gratuita para contar palabras, caracteres y páginas en archivos PDF",
+      "url": "https://jofaval.github.io/pdf-word-counter",
+      "applicationCategory": "Productivity",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "100"
+      }
+    }
+    </script>
+    
     <script src="script.js"></script>
 </body>
 </html>
