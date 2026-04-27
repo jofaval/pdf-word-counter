@@ -89,6 +89,23 @@
                         <h4>Tiempo estimado de lectura:</h4>
                         <p id="reading-time">-</p>
                     </div>
+                    
+                    <div id="reading-distribution" class="hidden">
+                        <h4>Distribuir lectura en días</h4>
+                        <div class="distribution-grid">
+                            <div class="distribution-input">
+                                <label for="reading-days">Número de días:</label>
+                                <input type="number" id="reading-days" min="1" value="2" aria-describedby="days-help">
+                                <small id="days-help">Días de lectura</small>
+                            </div>
+                            <div class="distribution-input">
+                                <label for="minutes-per-day">Minutos por día:</label>
+                                <input type="number" id="minutes-per-day" min="1" value="30" aria-describedby="minutes-help">
+                                <small id="minutes-help">Tiempo de lectura diario</small>
+                            </div>
+                        </div>
+                        <p id="distribution-info" class="distribution-info">-</p>
+                    </div>
                 </article>
                 
                 <button id="reset-btn">Analizar otro PDF</button>
